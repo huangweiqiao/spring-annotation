@@ -46,6 +46,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *
  * AbstractAdvisorAutoProxyCreator又重写了setBeanFactory方法 调用了父类的setBeanFactory后还调用了initBeanFactory方法
  *
+ * AspectJAwareAdvisorAutoProxyCreator
+ *
  * AnnotationAwareAspectJAutoProxyCreator有initBeanFactory方法，其实就是重写了父类AbstractAdvisorAutoProxyCreator的initBeanFactory方法
  *
  *流程：
@@ -69,6 +71,31 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *              4、BeanPostProcessor(AnnotationAwareAspectJAutoProxyCreator)创建成功，并且创建了aspectJAdvisorsBuilder对象
  *      7、把BeanPostProcessor注册BeanFactory中
  *          beanFactory.addBeanPostProcessor()
+ *
+ *===============================以上是创建和注册AnnotationAwareAspectJAutoProxyCreator的过程===============================
+ *
+ *     AnnotationAwareAspectJAutoProxyCreator 是一个 InstantiationAwareBeanPostProcessor
+ * 4、// Instantiate all remaining (non-lazy-init) singletons.
+ * 	  finishBeanFactoryInitialization(beanFactory);完成BeanFactory初始化工作，创建剩下的单实例
+ * 	  1、遍历获取容器中所有的Bean,依次创建对象getBean(beanName);
+ * 	    getBean-->doGetBean()-->getSingleton()-->创建bean
+ * 	  2、创建bean
+ * 	    【AnnotationAwareAspectJAutoProxyCreator在所有Bean创建之前会有一个拦截，因为它是InstantiationAwareBeanPostProcessor，会调用postProcessBeforeInstantiation】
+ * 	    1、先从缓存中获取当前bean,如果能获取到，说明bean是之前被创建过的，直接使用，否则再创建
+ * 	        只要创建好的bean会被缓存起来
+ * 	    2、创建bean createBean() ，AnnotationAwareAspectJAutoProxyCreator会在任何bean创建之前先尝试返回bean的实例
+ * 	        【BeanPostProcessor是Bean对象创建完成初始化前后调用的】
+ * 	        【InstantiationAwareBeanPostProcessor是在创建Bean实例之前先尝试用后置处理器返回对象，AnnotationAwareAspectJAutoProxyCreator属于该类型】
+ * 	        1、resolveBeforeInstantiation（）解析BeforeInstantiation，希望后置处理器在此能返回一个代理对象，如果能返回代理对象就使用，如果不能就继续。
+ * 	                拿到所有后置处理器，如果是InstantiationAwareBeanPostProcessor这个类型就执行后置处理器的 postProcessBeforeInstantiation 方法
+ * 	                bean = applyBeanPostProcessorsBeforeInstantiation(targetType, beanName);
+ * 					if (bean != null) {
+ * 						bean = applyBeanPostProcessorsAfterInitialization(bean, beanName);
+ *                  }
+ * 	        2、doCreateBean(beanName, mbdToUse, args);真正的去创建一个bean实例，和3.6流程一样
+ *
+ *
+ *
  *
  *
  */
