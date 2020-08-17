@@ -1,8 +1,8 @@
 package com.hwq.config;
 
 import com.hwq.aop.LogAspects;
-import com.hwq.aop.MathCalculator;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
@@ -165,16 +165,24 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *              正常执行：前置通知--》目标方法--》后置通知--》返回通知
  *              发生异常：前置通知--》目标方法--》后置通知--》异常通知
  *
+ *
+ *
+ *
+ * ===================================================================
+ * 
+ *
+ *
+ *
  */
-
+@ComponentScan("com.hwq.aop")
 @EnableAspectJAutoProxy
 @Configuration
 public class MainConfigOfAOP {
 
-    @Bean
+   /* @Bean
     public MathCalculator calculator(){
         return new MathCalculator();
-    }
+    }*/
 
     @Bean
     public LogAspects logAspects(){

@@ -1,9 +1,12 @@
 package com.hwq.aop;
 
-public class MathCalculator {
+import org.springframework.stereotype.Component;
 
-    public int div(int i,int j){
+@Component("mathCalculator")
+public class MathCalculator implements Calculator {
+
+    public String div(int i,int j){
         System.out.println("MathCalculator...div...");
-        return i/j;
+        return "结果="+i/j;
     }
 }

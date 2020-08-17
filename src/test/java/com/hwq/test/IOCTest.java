@@ -2,7 +2,6 @@ package com.hwq.test;
 
 import com.hwq.bean.Blue;
 import com.hwq.bean.Person;
-import com.hwq.config.MainConfig;
 import com.hwq.config.MainConfig2;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

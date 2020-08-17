@@ -3,7 +3,7 @@ package com.hwq.bean;
 import org.springframework.beans.factory.annotation.Value;
 
 public class Person {
-    //使用@Value复制
+    //使用@Value赋值
     //1、基本数值   @Value("张三")   @Value(20)
     //2、spel表达式  @Value("#{20-2}")
     //3、可以写${}  取出配置文件properties文件种的值(在运行环境变量里面的值)  @Value("${环境变量名}")

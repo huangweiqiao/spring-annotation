@@ -1,11 +1,9 @@
 package com.hwq.bean;
 
-import com.sun.media.jfxmediaimpl.MediaDisposer;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -39,7 +37,7 @@ public class InitBeanOrder implements InitializingBean, BeanPostProcessor, Dispo
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("initBeanOrder postProcessBeforeInitialization");
+        System.out.println("initBeanOrder postProcessBeforeInitialization  beanName="+beanName);
         printNum();
         return bean;
     }

@@ -1,10 +1,7 @@
 package com.hwq.test;
 
-import com.hwq.aop.MathCalculator;
+import com.hwq.aop.Calculator;
 import com.hwq.config.MainConfigOfAOP;
-import com.hwq.config.MainConfigOfAutowired;
-import com.hwq.dao.BookDao;
-import com.hwq.service.BookService;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -14,9 +11,22 @@ public class IOCTest_AOP {
 
         AnnotationConfigApplicationContext configApplicationContext =
                 new AnnotationConfigApplicationContext(MainConfigOfAOP.class);
-        MathCalculator calculator = configApplicationContext.getBean(MathCalculator.class);
-        calculator.div(10,2);
+        Calculator calculator = (Calculator)configApplicationContext.getBean("mathCalculator");
+        calculator.div(10,5);
+
+
+        System.out.println("=====================================");
+
+        Calculator calculator2 = (Calculator)configApplicationContext.getBean("myCalculator");
+        calculator2.div(10,5);
+
+
+        System.out.println("*****************************************");
+        Calculator calculator3 = (Calculator)configApplicationContext.getBean("myPrint");
+        calculator2.div(10,5);
+
         configApplicationContext.close();
+
     }
 
 }

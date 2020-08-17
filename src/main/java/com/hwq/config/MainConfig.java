@@ -1,18 +1,13 @@
 package com.hwq.config;
 
 import com.hwq.bean.Person;
-import com.hwq.service.BookService;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 
 //配置类==配置文件，告诉spring这是一个配置类
 @Configurable
-@ComponentScan(value = "com.hwq"
+@ComponentScan(value = "com.hwq.bean"
 
         /*,excludeFilters = {
         @ComponentScan.Filter(type = FilterType.ANNOTATION,classes ={Controller.class, Service.class} )

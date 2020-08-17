@@ -10,7 +10,6 @@ public class IOCTest_LifeCycle {
 
     @Test
     public void test01(){
-
         annotationConfigApplicationContext.close();
     }
 }
