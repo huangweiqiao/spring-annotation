@@ -1,12 +1,7 @@
 package com.hwq.config;
 
-import com.hwq.bean.Car;
-import com.hwq.bean.Cat;
-import com.hwq.bean.InitBeanOrder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 /**
  * bean的生命周期
@@ -63,7 +58,7 @@ import org.springframework.context.annotation.Primary;
  *
  *
  */
-//@ComponentScan("com.hwq.bean")
+@ComponentScan("com.hwq.bean")
 @Configuration
 public class MainConfigOfLifeCycle {
 
@@ -71,10 +66,12 @@ public class MainConfigOfLifeCycle {
 //    public Car car(){
 //        return new Car();
 //    }
-    @Primary
+
+   /* //通过这种方式产生的bean对象，对象里不能使用 @Lookup 修饰的方法，只能通过@Component注册的bean才能使用 @Lookup 机制
+   @Primary
     @Bean(initMethod = "initMethod",destroyMethod = "destoryMethod")
     public InitBeanOrder initBeanOrder(){
         return new InitBeanOrder();
-    }
+    }*/
 
 }

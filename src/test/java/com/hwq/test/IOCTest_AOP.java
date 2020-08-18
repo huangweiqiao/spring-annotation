@@ -13,6 +13,12 @@ public class IOCTest_AOP {
                 new AnnotationConfigApplicationContext(MainConfigOfAOP.class);
         Calculator calculator = (Calculator)configApplicationContext.getBean("mathCalculator");
         calculator.div(10,5);
+        calculator.div(9,3);
+
+        System.out.println("--------------------------------------");
+
+        Calculator calculator1 = (Calculator)configApplicationContext.getBean("mathCalculator");
+        calculator1.div(9,3);
 
 
         System.out.println("=====================================");

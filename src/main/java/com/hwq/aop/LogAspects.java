@@ -3,6 +3,8 @@ package com.hwq.aop;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
@@ -10,7 +12,10 @@ import java.util.Arrays;
  * 切面类
  * @Aspect 告诉spring当前类是一个切面类
  */
-@Aspect
+@Component
+//表示 当前代理的目标对象如果是 com.hwq.aop.MathCalculator，并且目标对象是原型对象则该代理对象也每次生成一个新对象
+@Aspect("perthis(target(com.hwq.aop.MathCalculator))")
+@Scope("prototype")
 public class LogAspects {
 
     //这是spring新版本里加的特性，表示 com.hwq.aop下所有的类都实现Calculator这个接口，默认方法的实现就按照MathCalculator这类
@@ -39,6 +44,7 @@ public class LogAspects {
     @Before("execution(public * com.hwq.aop.*.*(..))")
     public void logStart(JoinPoint joinPoint){
         Object[] args = joinPoint.getArgs();
+        System.out.println("proxy object="+this.hashCode());
         System.out.println(joinPoint.getSignature().getName()+"运行before。。。参数列表,{"+ Arrays.asList(args) +"}");
     }
 

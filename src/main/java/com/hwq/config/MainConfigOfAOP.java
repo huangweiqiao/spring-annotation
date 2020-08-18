@@ -1,7 +1,5 @@
 package com.hwq.config;
 
-import com.hwq.aop.LogAspects;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -169,8 +167,16 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *
  *
  * ===================================================================
- * 
+ * 1、jdk的动态代理为什么必须是面向接口
+ * 答：jdk动态代理底层代码在生成代理类时会继承jdk的 Proxy对象，而java是单继承的，所以我们不能在继承任何类了，只能通过接口的方式实现动态代理
+ * 因此假如  A 类 实现了 B 接口，现在我们要通过动态代理代理A类，因此只能通过B接口生成代理类 C
+ * 生成代理类如下
+ *  class C extends Proxy implements B{
  *
+ *  }
+ *  c instanceof A  // false
+ *  c instanceof B  // true
+ *  c instanceof Proxy // true
  *
  *
  */
@@ -184,8 +190,8 @@ public class MainConfigOfAOP {
         return new MathCalculator();
     }*/
 
-    @Bean
+    /*@Bean
     public LogAspects logAspects(){
         return new LogAspects();
-    }
+    }*/
 }

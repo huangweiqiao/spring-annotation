@@ -3,11 +3,14 @@ package com.hwq.bean;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+@Component
 public class InitBeanOrder implements InitializingBean, BeanPostProcessor, DisposableBean {
 
      public static volatile int num=1;
@@ -35,6 +38,13 @@ public class InitBeanOrder implements InitializingBean, BeanPostProcessor, Dispo
         printNum();
     }
 
+    /**
+     * 其他bean创建之前会通知到这里
+     * @param bean
+     * @param beanName
+     * @return
+     * @throws BeansException
+     */
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         System.out.println("initBeanOrder postProcessBeforeInitialization  beanName="+beanName);
@@ -42,6 +52,13 @@ public class InitBeanOrder implements InitializingBean, BeanPostProcessor, Dispo
         return bean;
     }
 
+    /**
+     * 其他bean创建之后会通知到这里
+     * @param bean
+     * @param beanName
+     * @return
+     * @throws BeansException
+     */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         System.out.println("initBeanOrder postProcessAfterInitialization");
@@ -66,6 +83,18 @@ public class InitBeanOrder implements InitializingBean, BeanPostProcessor, Dispo
         printNum();
     }
 
+
+    public void showPrototyUser(){
+        PrototyUser user = getUser();
+        System.out.println(user.hashCode());
+    }
+
+    //因为该类是单例，但是PrototyUser是原型，如果想在单例对象里使用原型对象（每次使用不同的对象），则可以像该方法一下获取原型对象
+    //用@Lookup修饰了的方法，spring会根据返回类型去实例化对象
+    @Lookup
+    public PrototyUser getUser(){
+        return null;
+    }
 
     private void printNum(){
         System.out.println("num当前值"+num+", 加1后等于"+ (++num));
