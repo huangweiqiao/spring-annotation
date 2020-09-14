@@ -52,7 +52,7 @@ public class IOCTest {
     @Test
     public void testImport(){
         printBeans();
-        Blue bean = annotationConfigApplicationContext.getBean(Blue.class);
+        Blue bean = annotationConfigApplicationContext.getBean(Blue.class) ;
         System.out.println(bean.getClass().getSimpleName());
 
         //这里虽然用的是工厂bean的名字去获取对象，但是返回的其实是 工厂bean对象的getObject返回的对象，所以这里是Color对象

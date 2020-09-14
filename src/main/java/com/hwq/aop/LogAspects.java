@@ -13,7 +13,7 @@ import java.util.Arrays;
  * @Aspect 告诉spring当前类是一个切面类
  */
 @Component
-//表示 当前代理的目标对象如果是 com.hwq.aop.MathCalculator，并且目标对象是原型对象则该代理对象也每次生成一个新对象
+//表示 当前代理的目标对象如果是 com.hwq.aop.MathCalculator，并且目标对象是原型对象则该代理对象也每次生成一个新对象，target(com.hwq.aop.MathCalculator) 这也可以换成其他Pointcut表达式
 @Aspect("perthis(target(com.hwq.aop.MathCalculator))")
 @Scope("prototype")
 public class LogAspects {

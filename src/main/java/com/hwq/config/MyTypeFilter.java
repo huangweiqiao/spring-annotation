@@ -21,7 +21,7 @@ public class MyTypeFilter implements TypeFilter {
     public boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) throws IOException {
         //获取当前类注解信息
         AnnotationMetadata annotationMetadata = metadataReader.getAnnotationMetadata();
-        //获取当前正在烧苗的类的类信息
+        //获取当前正在扫描的类的类信息
         ClassMetadata classMetadata = metadataReader.getClassMetadata();
         //获取当前类资源信息
         Resource resource = metadataReader.getResource();

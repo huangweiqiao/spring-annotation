@@ -23,5 +23,15 @@ public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
             //注册一个bean，指定bean名
             registry.registerBeanDefinition("rainBow",rootBeanDefinition);
         }
+
+        /*
+        (可以动态的注册bean,例如项目里有A接口没有实现类，
+ *      那么我们可以定义一个类实现ImportBeanDefinitionRegistrar，然后在实现的方法中 创建A接口的动态代理对象，然后注册到容器中，
+ *      创建A接口的动态代理对象可以通过实现 FactoryBean接口，在getObject方法中创建A的动态代理对象。)
+        BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition();
+        AbstractBeanDefinition beanDefinition = builder.getBeanDefinition();
+        beanDefinition.getConstructorArgumentValues().addGenericArgumentValue("com.hwq.bean.A"); // AFactoryBean 这个类中有构造函数，构造函数有一个类型是 com.hwq.bean.A 的参数
+        beanDefinition.setBeanClass(AFactoryBean.class); //在AFactoryBean类中创建动态代理类
+        registry.registerBeanDefinition("a",beanDefinition);*/
     }
 }

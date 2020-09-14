@@ -17,7 +17,9 @@ import org.springframework.context.annotation.*;
  *  3、@Import (快速给容器中导入组件)
  *      1、@Import (要导入的类)；容器中就会自动注册这个组件，id默认为全类名；
  *      2、ImportSelector: 返回需要导入的组件的全类名数组；
- *      3、ImportBeanDefinitionRegistrar
+ *      3、ImportBeanDefinitionRegistrar (可以动态的注册bean,例如项目里有A接口没有实现类，
+ *      那么我们可以定义一个类实现ImportBeanDefinitionRegistrar，然后在实现的方法中 创建A接口的动态代理对象，然后注册到容器中，
+ *      创建A接口的动态代理对象可以通过实现 FactoryBean接口，在getObject方法中创建A的动态代理对象。)
  *  4、使用srping提供的 FactoryBean(工厂bean,区别于普通bean这是一个工厂，用来生成其他bean对象)
  */
 @Configuration

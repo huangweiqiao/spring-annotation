@@ -1,12 +1,12 @@
 package com.hwq.config;
 
 import com.hwq.bean.Person;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 //配置类==配置文件，告诉spring这是一个配置类
-@Configurable
+@Configuration
 @ComponentScan(value = "com.hwq.bean"
 
         /*,excludeFilters = {

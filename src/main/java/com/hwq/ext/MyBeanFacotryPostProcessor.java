@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.stream.Stream;
 
+/**
+ * BeanFactoryPostProcessor 是spring提供的一个扩展接口，
+ * 我们可以通过扩展这个接口来参与到 bean对象生成过程当中，例如可以修改bean的作用域等等
+ */
 @Component
 public class MyBeanFacotryPostProcessor implements BeanFactoryPostProcessor {
 
