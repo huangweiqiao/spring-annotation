@@ -316,4 +316,10 @@ org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doC
 org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean  初始化sping，里面第七次和第八次调用后置处理器
 
 
+spring提供的扩展点：
+BeanPostProcessor
+BeanFactoryPostProcessor
+BeanDefinitionRegistryPostProcessor
+ImportSelector
+ImportBeanDefinitionRegistrar
 

@@ -8,7 +8,7 @@ import org.springframework.core.type.AnnotationMetadata;
 
 public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
     /**
-     *
+     *ImportBeanDefinitionRegistrar 可以动态注册bean
      * @param importingClassMetadata 当前类的注解信息
      * @param registry 注册组件到容器中的类
      */

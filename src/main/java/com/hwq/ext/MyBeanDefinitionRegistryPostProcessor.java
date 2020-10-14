@@ -6,6 +6,16 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.*;
 import org.springframework.stereotype.Component;
 
+/**
+ * BeanDefinitionRegistryPostProcessor 是 BeanFactorydPostProcessor的子类，但是在BeanFactorydPostProcessor之前被执行，
+ * 因为spring源码中包扫描时先遍历 BeanDefinitionRegistryPostProcessor(有spring提供的，也有自定义的（手动调用context.addBeanFactoryPostProcessor()才算自定义，自定义的会被先执行）)
+ *
+ * BeanDefinitionRegistryPostProcessor 能够让我们编写代码根据实际情况动态注册bean
+ *
+ * 经典应用：
+ * ConfigurationClassPostProcessor 中有使用的
+ *
+ */
 @Component
 public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
 
