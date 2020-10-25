@@ -1,17 +1,15 @@
 package com.hwq.bean;
 
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Lookup;
-import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Component
-public class InitBeanOrder implements InitializingBean, BeanPostProcessor, DisposableBean {
+public class InitBeanOrder implements InitializingBean, DisposableBean {
 
      public static volatile int num=1;
 
@@ -38,33 +36,7 @@ public class InitBeanOrder implements InitializingBean, BeanPostProcessor, Dispo
         printNum();
     }
 
-    /**
-     * 其他bean创建之前会通知到这里
-     * @param bean
-     * @param beanName
-     * @return
-     * @throws BeansException
-     */
-    @Override
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("initBeanOrder postProcessBeforeInitialization  beanName="+beanName);
-        printNum();
-        return bean;
-    }
 
-    /**
-     * 其他bean创建之后会通知到这里
-     * @param bean
-     * @param beanName
-     * @return
-     * @throws BeansException
-     */
-    @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("initBeanOrder postProcessAfterInitialization");
-        printNum();
-        return bean;
-    }
 
     @PreDestroy
     public void preDestroy(){

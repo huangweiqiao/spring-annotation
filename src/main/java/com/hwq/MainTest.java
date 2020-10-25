@@ -3,7 +3,6 @@ package com.hwq;
 import com.hwq.bean.Person;
 import com.hwq.config.MainConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MainTest {
     public static void main(String[] args) {
@@ -22,5 +21,11 @@ public class MainTest {
         for (String name:beanNamesForAnnotation){
             System.out.println(name);
         }
+
+
+        for (String beanDefinitionName : annotationConfigApplicationContext.getBeanDefinitionNames()) {
+            System.out.println(beanDefinitionName);
+        }
+
     }
 }

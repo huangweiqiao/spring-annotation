@@ -47,15 +47,15 @@ import org.springframework.context.annotation.Configuration;
  *
  *  初始化顺序
  *      1、initBeanOrder constructor (构造方法)
- *      2、initBeanOrder postConstruct (@PostConstruct 注解的方法)
- *      3、initBeanOrder afterPropertiesSet (实现InitializingBean接口的方法)
- *      4、initBeanOrder initMethod  (@Bean 中指定的初始方法)
- *      5、initBeanOrder postProcessBeforeInitialization (实现BeanPostProcessor接口的方法)
- *      6、initBeanOrder postProcessAfterInitialization  (实现BeanPostProcessor接口的方法)
- *      7、initBeanOrder preDestroy (@PreDestroy注解的方法)
- *      8、initBeanOrder destroy  (实现DisposableBean接口的方法)
- *      9、initBeanOrder destoryMethod (@Bean 中指定的销毁方法)
- *
+ *      2、属性注入
+ *      3、initBeanOrder postProcessBeforeInitialization (实现BeanPostProcessor接口的方法)
+ *      4、initBeanOrder postConstruct (@PostConstruct 注解的方法)
+ *      5、initBeanOrder afterPropertiesSet (实现InitializingBean接口的方法)
+ *      6、initBeanOrder initMethod  (@Bean 中指定的初始方法)
+ *      7、initBeanOrder postProcessAfterInitialization  (实现BeanPostProcessor接口的方法)
+ *      8、initBeanOrder preDestroy (@PreDestroy注解的方法)
+ *      9、initBeanOrder destroy  (实现DisposableBean接口的方法)
+ *      10、initBeanOrder destoryMethod (@Bean 中指定的销毁方法)
  *
  */
 @ComponentScan("com.hwq.bean")

@@ -17,7 +17,7 @@ public class Dog implements ApplicationContextAware {
         System.out.println("dog constructor...");
     }
 
-    //对象创建并复制之后调用
+    //对象创建并赋值之后调用
     @PostConstruct
     public void init(){
         System.out.println("dog PostConstruct...");

@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Configuration;
         @ComponentScan.Filter(type = FilterType.ANNOTATION,classes ={Controller.class, Service.class} )
         }*/
 
-         /*, includeFilters = {
-            @ComponentScan.Filter(type = FilterType.ANNOTATION,classes ={Controller.class}) ,//按注解包含
-            @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,classes = {BookService.class}), //按指定的类型包含
-            @ComponentScan.Filter(type = FilterType.CUSTOM,classes = {MyTypeFilter.class}) //自定义的包含规则
+        /*, includeFilters = {
+        @ComponentScan.Filter(type = FilterType.ANNOTATION,classes ={Controller.class}) ,//按注解包含
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,classes = {BookService.class}), //按指定的类型包含
+        @ComponentScan.Filter(type = FilterType.CUSTOM,classes = {MyTypeFilter.class}) //自定义的包含规则
         }
         ,useDefaultFilters=false*/
 )
@@ -24,8 +24,8 @@ import org.springframework.context.annotation.Configuration;
 ComponentScan指定自动扫描的包,这样这个包下所有@Controller,@Service,@Repository,@Component 修饰的类 就能自动注册到IOC容器中了
 相当于xml文件中的 <context:component-scan base-package=""></context>
 value 指定要扫描的包，
-excludeFilters 表示要将那些排除掉
-includeFilters表示只包含哪些，使用includeFilters要禁用掉默认规则，因此@ComponentScan要加上useDefaultFilters=false
+excludeFilters 表示要将value指定的包下哪些类排除掉, 使用excludeFilters进行排除时可以不用禁用默认规则，因此@ComponentScan的useDefaultFilters可以不用配置
+includeFilters表示只包含value指定的包下哪些类，使用includeFilters要禁用掉默认规则，因此@ComponentScan要加上useDefaultFilters=false,否则的话还是会使用默认的扫描
 相当于<context:component-scan base-package="" use-default-filter="false"></context>
 
 @ComponentScan 这个组件是可以写多次的，例如：

@@ -2,7 +2,6 @@ package com.hwq.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 /**
  * 自动装配
@@ -63,7 +62,7 @@ import org.springframework.stereotype.Component;
  * 四、自定义组件想要使用spring容器底层的一些组件 （ApplicationContext,BeanFactory,xxx）,
  * 自定义组件实现xxxAware接口,在创建对象的时候，会调用接口规定的方法注入相关组件，可以查看Aware的相关子接口,
  * xxxAware的功能都是使用xxxxProcessor来实现的
- *  ApplicationContextAware====>ApplicationContextProcessor
+ *  ApplicationContextAware====>ApplicationContextAwareProcessor
  *
  * 例如我们的 Red 类的定义
  *

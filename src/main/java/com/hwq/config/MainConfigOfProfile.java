@@ -37,7 +37,7 @@ public class MainConfigOfProfile implements EmbeddedValueResolverAware {
     private String driverClass;
 
     @Profile("test")
-    @Bean("testDataSource")
+    @Bean("dataSource")
     public DataSource dataSourceTest(@Value("${db.password}") String pwd) throws PropertyVetoException {
         System.out.println("==============dataSourceTest================");
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
@@ -49,11 +49,11 @@ public class MainConfigOfProfile implements EmbeddedValueResolverAware {
     }
 
     @Profile("dev")
-    @Bean("devDataSource")
+    @Bean("dataSource")
     public DataSource dataSourceDev(@Value("${db.password}") String pwd) throws PropertyVetoException {
         System.out.println("===============dataSourceDev=================");
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
-        comboPooledDataSource.setUser(user);
+        comboPooledDataSource.setUser("username");
         comboPooledDataSource.setPassword(pwd);
         comboPooledDataSource.setJdbcUrl("jdbc:mysql://192.168.137.56:3306/test");
         comboPooledDataSource.setDriverClass(driverClass);

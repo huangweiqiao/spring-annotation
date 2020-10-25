@@ -1,9 +1,6 @@
 package com.hwq.test;
 
-import com.hwq.config.MainConfigOfAutowired;
 import com.hwq.config.MainConfigOfProfile;
-import com.hwq.dao.BookDao;
-import com.hwq.service.BookService;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -21,7 +18,6 @@ public class IOCTest_Profile {
         for (String name:beanNamesForType){
             System.out.println(name);
         }
-
         configApplicationContext.close();
     }
 
@@ -42,7 +38,7 @@ public class IOCTest_Profile {
         for (String name:beanNamesForType){
             System.out.println(name);
         }
-
+        DataSource dataSource = (DataSource)configApplicationContext.getBean("dataSource");
         configApplicationContext.close();
     }
 
